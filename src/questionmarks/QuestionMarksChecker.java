@@ -26,7 +26,21 @@ public class QuestionMarksChecker {
 			}
 		}
 		//Checks if any of pairs is equal to 10
-		//Checks if there are 3 question marks between the pair of numbers equal to 10
+		for(int i = 0; i<characters.size(); i++){
+			if(Integer.valueOf(characters.get(i)) + Integer.valueOf(characters.get(i)) == 10){
+				int count = 0;
+				for(int x = indexes.get(i); x<indexes.get(i+1); x++){
+					if(chars[x] == '?'){
+						count ++;
+					}
+				}
+				if(count == 3){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
 		return result;
 	}
 
