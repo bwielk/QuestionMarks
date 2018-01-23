@@ -15,7 +15,8 @@ public class QuestionMarksChecker {
 			chars[i] = String.valueOf(s.charAt(i));
 		}
 		findNumbers(chars, numbers);
-		return checkForQuestionMarks(chars);
+		checkForQuestionMarks(chars);
+		return result;
 	}
 	
 	public String[] createArrayOfDigits(){
@@ -38,25 +39,22 @@ public class QuestionMarksChecker {
 		}
 	}
 	
-	public boolean checkForQuestionMarks(String[] stringToSearchIn){
-		boolean result = true;
+	public void checkForQuestionMarks(String[] stringToSearchIn){
 		String questionMark = "?";
-		for(int i = 0; i<characters.size(); i++){
+		int count = 0;
+		for(int i = 0; i<characters.size()-1; i++){
 			if(Integer.valueOf(characters.get(i)) + Integer.valueOf(characters.get(i+1)) == 10){
-				int count = 0;
 				for(int x = indexes.get(i); x<indexes.get(i+1); x++){
-					if(stringToSearchIn[x] == questionMark){
+					if(stringToSearchIn[x].equals(questionMark)){
 						count ++;
 					}
 				}
-				if(count != 3){
-					result = false;
-				}
 			}
 		}
-		return result;
+		if(count == 3){
+			result = true;
+		}
 	}
-	
 
 	public ArrayList<String> getCharacters() {
 		return characters;
