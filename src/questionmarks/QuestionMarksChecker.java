@@ -55,18 +55,4 @@ public class QuestionMarksChecker {
 			result = true;
 		}
 	}
-
-	public ArrayList<String> getCharacters() {
-		return characters;
-	}
-
-	public ArrayList<Integer> getIndexes() {
-		return indexes;
-	}
-	
-	private void printArray(String[] a){
-		for(int i=0; i<a.length; i++){
-			System.out.println(a[i]);
-		}
-	}
 }
