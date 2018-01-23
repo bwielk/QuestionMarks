@@ -19,9 +19,17 @@ public class QuestionMarksCheckerTest {
 	}
 	
 	@Test
-	public void test1() {
+	public void checkerFindsQuestionMarksBetweenNumbersOFSum10() {
 		assertEquals(true, checker.run(string1));
 		assertEquals(false, checker.run(string2));
 	}
+	
+	@Test
+	public void checkerPopulatersCharactersWithNumbers(){
+		checker.run(string1);
+		assertEquals("7", checker.getCharacters().get(0));
+	}
+	
+	
 
 }

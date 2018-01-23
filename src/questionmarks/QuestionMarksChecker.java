@@ -5,56 +5,71 @@ import java.util.ArrayList;
 public class QuestionMarksChecker {
 	
 	private boolean result = false;
-	ArrayList<String> characters = new ArrayList<String>();
-	ArrayList<Integer> indexes = new ArrayList<Integer>();
-	
+	private static ArrayList<String> characters = new ArrayList<String>();
+	private static ArrayList<Integer> indexes = new ArrayList<Integer>();
+
 	public boolean run(String s){
-		char[] numbers = createArrayOfDigits(10);
-		char[] chars = s.toCharArray();
+		String[] numbers = createArrayOfDigits();
+		printArray(numbers);
+		String[] chars = new String[s.length()];
+		for(int i=0; i<s.length(); i++){
+			chars[i] = String.valueOf(s.charAt(i));
+		}
 		findNumbers(chars, numbers);
 		return checkForQuestionMarks(chars);
 	}
 	
-	public char[] createArrayOfDigits(int limit){
-		if(limit <= 10){
-			char[] numbers = new char[limit];
-			for(int i = 0; i<10; i++){
-				numbers[i] = (char)(i + '0'); 
-				return numbers;
-			}
+	public String[] createArrayOfDigits(){
+		String[] numbers = new String[10];
+		for(int i = 0; i<10; i++){
+			numbers[i] = String.valueOf(i);
 		}
-		return null;
+		return numbers;
 	}
 	
-	public void findNumbers(char[] chars, char[] numbers){
+	public void findNumbers(String[] chars, String[] numbers){
 		for(int i = 0; i< chars.length; i++){
-			char ch = chars[i];
+			String ch = chars[i];
 			for(int n = 0; n<numbers.length; n++){
 				if(ch == numbers[n]){
-					characters.add(String.valueOf(ch));
+					characters.add(ch);
 					indexes.add(Integer.valueOf(i));
 				}
 			}
 		}
 	}
 	
-	public boolean checkForQuestionMarks(char[] stringToSearchIn){
+	public boolean checkForQuestionMarks(String[] stringToSearchIn){
 		boolean result = true;
+		String questionMark = "?";
 		for(int i = 0; i<characters.size(); i++){
-			if(Integer.valueOf(characters.get(i)) + Integer.valueOf(characters.get(i)) == 10){
+			if(Integer.valueOf(characters.get(i)) + Integer.valueOf(characters.get(i+1)) == 10){
 				int count = 0;
 				for(int x = indexes.get(i); x<indexes.get(i+1); x++){
-					if(stringToSearchIn[x] == '?'){
+					if(stringToSearchIn[x] == questionMark){
 						count ++;
 					}
 				}
-				if(count == 3){
-					result =  true;
-				}else{
-					result =  false;
+				if(count != 3){
+					result = false;
 				}
 			}
 		}
 		return result;
+	}
+	
+
+	public ArrayList<String> getCharacters() {
+		return characters;
+	}
+
+	public ArrayList<Integer> getIndexes() {
+		return indexes;
+	}
+	
+	private void printArray(String[] a){
+		for(int i=0; i<a.length; i++){
+			System.out.println(a[i]);
+		}
 	}
 }
