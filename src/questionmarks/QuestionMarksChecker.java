@@ -5,12 +5,11 @@ import java.util.ArrayList;
 public class QuestionMarksChecker {
 	
 	private boolean result = false;
-	private static ArrayList<String> characters = new ArrayList<String>();
-	private static ArrayList<Integer> indexes = new ArrayList<Integer>();
+	private ArrayList<String> characters = new ArrayList<String>();
+	private ArrayList<Integer> indexes = new ArrayList<Integer>();
 
 	public boolean run(String s){
 		String[] numbers = createArrayOfDigits();
-		printArray(numbers);
 		String[] chars = new String[s.length()];
 		for(int i=0; i<s.length(); i++){
 			chars[i] = String.valueOf(s.charAt(i));
@@ -28,10 +27,10 @@ public class QuestionMarksChecker {
 	}
 	
 	public void findNumbers(String[] chars, String[] numbers){
-		for(int i = 0; i< chars.length; i++){
+		for(int i = 0; i<chars.length; i++){
 			String ch = chars[i];
 			for(int n = 0; n<numbers.length; n++){
-				if(ch == numbers[n]){
+				if(ch.equals(numbers[n])){
 					characters.add(ch);
 					indexes.add(Integer.valueOf(i));
 				}
