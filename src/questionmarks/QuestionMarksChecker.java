@@ -14,14 +14,12 @@ public class QuestionMarksChecker {
 		for(int i=0; i<s.length(); i++){
 			chars[i] = String.valueOf(s.charAt(i));
 		}
-		findNumbers(chars, numbers);
-		System.out.println(characters);
-		System.out.println(indexes);
+		findNumbersInTheString(chars, numbers);
 		checkForQuestionMarks(chars);
 		return result;
 	}
 	
-	public String[] createArrayOfDigits(){
+	private String[] createArrayOfDigits(){
 		String[] numbers = new String[10];
 		for(int i = 0; i<10; i++){
 			numbers[i] = String.valueOf(i);
@@ -29,7 +27,7 @@ public class QuestionMarksChecker {
 		return numbers;
 	}
 	
-	public void findNumbers(String[] chars, String[] numbers){
+	private void findNumbersInTheString(String[] chars, String[] numbers){
 		for(int i = 0; i<chars.length; i++){
 			String ch = chars[i];
 			for(int n = 0; n<numbers.length; n++){
@@ -41,12 +39,11 @@ public class QuestionMarksChecker {
 		}
 	}
 	
-	public void checkForQuestionMarks(String[] stringToSearchIn){
+	private void checkForQuestionMarks(String[] stringToSearchIn){
 		String questionMark = "?";
 		int count = 0;
 		for(int i = 0; i<characters.size()-1; i++){
 			if(Integer.valueOf(characters.get(i)) + Integer.valueOf(characters.get(i+1)) == 10){
-				System.out.println(Integer.valueOf(characters.get(i)) + Integer.valueOf(characters.get(i+1)));
 				for(int x = indexes.get(i); x<indexes.get(i+1); x++){
 					if(stringToSearchIn[x].equals(questionMark)){
 						count ++;
@@ -54,7 +51,6 @@ public class QuestionMarksChecker {
 				}
 			}
 		}
-		System.out.println("count : " + count);
 		if(count == 3){
 			result = true;
 		}
