@@ -15,6 +15,8 @@ public class QuestionMarksChecker {
 			chars[i] = String.valueOf(s.charAt(i));
 		}
 		findNumbers(chars, numbers);
+		System.out.println(characters);
+		System.out.println(indexes);
 		checkForQuestionMarks(chars);
 		return result;
 	}
@@ -44,6 +46,7 @@ public class QuestionMarksChecker {
 		int count = 0;
 		for(int i = 0; i<characters.size()-1; i++){
 			if(Integer.valueOf(characters.get(i)) + Integer.valueOf(characters.get(i+1)) == 10){
+				System.out.println(Integer.valueOf(characters.get(i)) + Integer.valueOf(characters.get(i+1)));
 				for(int x = indexes.get(i); x<indexes.get(i+1); x++){
 					if(stringToSearchIn[x].equals(questionMark)){
 						count ++;
@@ -51,6 +54,7 @@ public class QuestionMarksChecker {
 				}
 			}
 		}
+		System.out.println("count : " + count);
 		if(count == 3){
 			result = true;
 		}
